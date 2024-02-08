@@ -1,0 +1,9 @@
+@use '../../styles/partials/reset' as *;
+@use '../../styles/partials/variables' as *;
+
+.progress-bar {
+    background-color: $color-light;
+        height: 25px;
+        min-width: 60%;
+        border-radius: 50px;
+}
