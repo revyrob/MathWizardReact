@@ -12,7 +12,7 @@ body {
   
 }
 
-.hero {
+.wizard-style {
     font-family: 'Wizards Magic';
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@ body {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
-    &__btnDiv {
+    &__wrapper {
         display:flex;
         flex-direction: column;
         width: 35%;

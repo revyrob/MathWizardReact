@@ -3,10 +3,12 @@ import Header from "../components/Header/Header";
 
 function Range() {
   return (
-    <div>
+    <div className="wizard-style__wrapper">
       <Header />
-      <p className="number">Choose your</p>
-      <h1 className="hero__title">Range</h1>
+      <div className="wizard-style__wrapper goToGame">
+        <p className="number">Choose your</p>
+        <h1 className="wizard-style__title">Range</h1>
+      </div>
     </div>
   );
 }
