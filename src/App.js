@@ -1,8 +1,8 @@
 import "./App.scss";
 import Homepage from "./pages/Homepage";
 import Range from "./pages/Range";
-import EquationLow from "./pages/Equation-low";
-import EquationHigh from "./pages/Equation-high";
+import EquationLow from "./pages/EquationLow";
+import EquationHigh from "./pages/EquationHigh";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
