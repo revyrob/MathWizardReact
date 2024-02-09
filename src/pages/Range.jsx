@@ -10,10 +10,10 @@ function Range() {
       <div className="wizard-style__wrapper goToGame">
         <p className="number">Choose your</p>
         <h1 className="wizard-style__title">Range</h1>
-        <Link to="">
+        <Link to="/equation-low">
           <Button className="goToGame__btn" text="0 - 5" />
         </Link>
-        <Link to="">
+        <Link to="/equation-high">
           <Button className="goToGame__btn" text="6 - 12" />
         </Link>
       </div>
