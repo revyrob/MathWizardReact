@@ -1,13 +1,15 @@
-import './App.scss';
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import "./App.scss";
+import Homepage from "./pages/Homepage";
+import Range from "./pages/Range";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <BrowserRouter>
-    <Header/>
-    <Hero/>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/range" element={<Range />} />
+      </Routes>
     </BrowserRouter>
   );
 }
