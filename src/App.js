@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/range" element={<Range />} />
-        <Route path="/equation-low" element={<EquationLow />} />
-        <Route path="/equation-high" element={<EquationHigh />} />
+        <Route path="/equationLow" element={<EquationLow />} />
+        <Route path="/equationHigh" element={<EquationHigh />} />
       </Routes>
     </BrowserRouter>
   );
