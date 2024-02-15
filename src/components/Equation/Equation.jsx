@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./Equation.scss";
+import Button from "../Button/Button";
 
 function Equation({ num }) {
   const [disabledButtons, setDisabledButtons] = useState(Array(9).fill(false));
@@ -22,25 +24,30 @@ function Equation({ num }) {
     <div>
       <div className="equation__row">
         <div>{number_given} x </div>
-        <input />
+        <input className="equation__input" />
         <div> = {given_sum}</div>
       </div>
       <div className="equation__keyboard">
-        <div>
-          {[...Array(9).keys()].map((index) => (
-            <button
-              key={index}
-              className="Keyboard-module_row"
-              data-key={index + 1}
-              aria-label={`add ${index + 1}`}
-              disabled={disabledButtons[index]}
-              // onClick={() => toggleDisabled(index)}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
+        {[...Array(9).keys()].map((index) => (
+          <button
+            key={index}
+            className="equation__btn"
+            data-key={index + 1}
+            aria-label={`add ${index + 1}`}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          key="0"
+          className="equation__btn"
+          data-key="0"
+          aria-label="add 0"
+        >
+          0
+        </button>
       </div>
+      <Button text="Submit"></Button>
     </div>
   );
 }

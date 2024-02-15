@@ -1,10 +1,22 @@
 .equation{
     &__keyboard {
         display: flex;
-        flex-direction: column;
+        width: 150px;
+        height: 200px;
+        flex-wrap: wrap;
+    }
+    &__btn {
+        width: 50px !important;
+        height: 50px !important;
     }
     &__row {
-        display:flex;
+        display: flex;
+    }
+    &__input {
+        width: 50px;
+        height: 50px;
+        padding: 1rem;
+        margin: 0.25rem;
     }
 
 }
