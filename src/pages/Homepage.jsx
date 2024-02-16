@@ -14,7 +14,7 @@ function Hero() {
         many equations as possible.
       </p>
       <div className="wizard-style__wrapper">
-        <Link to="/range">
+        <Link to="/equation">
           <Button className="goToGame__btn" text="Play Game" />
         </Link>
         <Link to="">

@@ -1,4 +1,9 @@
 .equation{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: space-around;
+    align-items: center;
     &__keyboard {
         display: flex;
         width: 150px;
@@ -11,6 +16,7 @@
     }
     &__row {
         display: flex;
+        font-size: 50px;
     }
     &__input {
         width: 50px;
