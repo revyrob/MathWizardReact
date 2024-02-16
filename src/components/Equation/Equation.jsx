@@ -4,24 +4,18 @@ import Button from "../Button/Button";
 
 function Equation() {
   let num = 5;
-  const [disabledButtons, setDisabledButtons] = useState(Array(9).fill(false));
-
+  const [response, setResponse] = useState("");
   let maxMultiTable = 10;
   let number_given = Math.floor(Math.random() * num);
   let unknown_num = Math.floor(Math.random() * maxMultiTable);
   let given_sum = number_given * unknown_num;
 
-  const toggleDisabled = (index) => {
-    setDisabledButtons((prev) => {
-      const newState = [...prev];
-      newState[index] = !newState[index];
-      return newState;
-    });
-  };
-
   const valueInput = (e) => {
     const value = e.currentTarget.value;
-    console.log(value);
+    e.preventDefault();
+    //you only know they have entered the numbers when
+    setResponse(value);
+    //timer
   };
   //put the number if the input if wrong the background is yello
   //if the background is the correct number it turns green stays 1sec and then goes to the next question
@@ -30,7 +24,12 @@ function Equation() {
     <div className="equation">
       <div className="equation__row">
         <div>{number_given} x </div>
-        <input className="equation__input" />
+        <input
+          className="equation__input"
+          value={response}
+          type="number"
+          // onChange={(e) => setResponse(e.target.value.replace(/[^0-9]/g, ""))}
+        />
         <div> = {given_sum}</div>
       </div>
       <div className="equation__keyboard">
