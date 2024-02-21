@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import "./Equation.scss";
-import Button from "../Button/Button";
 
 function Equation() {
-  const num = 5;
+  const nums = 10;
   const [response, setResponse] = useState("");
   const [enteredValues, setEnteredValues] = useState(""); // State to track entered values
-  const maxMultiTable = 10;
-  const number_given = Math.floor(Math.random() * num);
-  const unknown_num = Math.floor(Math.random() * maxMultiTable);
+  const random = Math.floor(Math.random() * nums.length);
+
+  const [number_given, setNumber_given] = useState(
+    Math.floor(Math.random() * nums)
+  );
+  const [unknown_num, setUnknown_num] = useState(
+    Math.floor(Math.random() * nums)
+  );
+
   const given_sum = number_given * unknown_num;
 
   const valueInput = (value) => {
     setEnteredValues(enteredValues + value); // Append the entered value
     setResponse(enteredValues + value); // Update response state
+    // setNumber_given(Math.floor(Math.random() * nums.length));
+    // setUnknown_num(Math.floor(Math.random() * nums.length));
+    // setTimeout(clearInput(), 400);
+    //clearInput();
   };
 
   const clearInput = () => {
@@ -22,11 +31,23 @@ function Equation() {
   };
 
   const inputResponse = () => {
-    // Only submit response if exactly one or three values are entered
     if (enteredValues.length === 1 || enteredValues.length === 3) {
       // Do something with the response, for now, clear the input
-      clearInput();
+      if (parseInt(response) === unknown_num) {
+        //set a back something to show correct
+        console.log("correct");
+        console.log(parseInt(response));
+        console.log(given_sum);
+      } else {
+        //set something to show wrong
+        console.log("wrong");
+        console.log(parseInt(response));
+        console.log(given_sum);
+      }
     }
+    setTimeout(clearInput(), 100);
+    setNumber_given(Math.floor(Math.random() * nums));
+    setUnknown_num(Math.floor(Math.random() * nums));
   };
   return (
     <div className="equation">
@@ -64,7 +85,9 @@ function Equation() {
           0
         </button>
       </div>
-      <Button text="Submit" onClick={inputResponse}></Button>
+      <button className="btn" text="Submit" onClick={() => inputResponse()}>
+        Submit
+      </button>
     </div>
   );
 }
