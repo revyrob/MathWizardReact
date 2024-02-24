@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./Equation.scss";
 
 function Equation() {
-  const nums = 10;
+  const nums = 12;
+  const [wins, setWins] = useState(0);
+  const [losses, setLosses] = useState(0);
   const [response, setResponse] = useState("");
   const [enteredValues, setEnteredValues] = useState(""); // State to track entered values
-  const random = Math.floor(Math.random() * nums.length);
 
   const [number_given, setNumber_given] = useState(
     Math.floor(Math.random() * nums)
@@ -19,10 +20,6 @@ function Equation() {
   const valueInput = (value) => {
     setEnteredValues(enteredValues + value); // Append the entered value
     setResponse(enteredValues + value); // Update response state
-    // setNumber_given(Math.floor(Math.random() * nums.length));
-    // setUnknown_num(Math.floor(Math.random() * nums.length));
-    // setTimeout(clearInput(), 400);
-    //clearInput();
   };
 
   const clearInput = () => {
@@ -36,18 +33,17 @@ function Equation() {
       if (parseInt(response) === unknown_num) {
         //set a back something to show correct
         console.log("correct");
-        console.log(parseInt(response));
-        console.log(given_sum);
+        setWins(wins + 1);
       } else {
         //set something to show wrong
         console.log("wrong");
-        console.log(parseInt(response));
-        console.log(given_sum);
+        setLosses(losses + 1);
       }
     }
     setTimeout(clearInput(), 100);
     setNumber_given(Math.floor(Math.random() * nums));
     setUnknown_num(Math.floor(Math.random() * nums));
+    console.log("Here are your wins " + wins + " and your losses " + losses);
   };
   return (
     <div className="equation">
