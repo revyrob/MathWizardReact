@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./Equation.scss";
+import Timer from "../Timer/Timer";
 
 function Equation() {
   const nums = 12;
+  const countDown = 10800;
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
   const [response, setResponse] = useState("");
@@ -45,6 +47,14 @@ function Equation() {
     setUnknown_num(Math.floor(Math.random() * nums));
     console.log("Here are your wins " + wins + " and your losses " + losses);
   };
+
+  function loop() {
+    //when the game starts it needs to start the timer
+    //timer is coming from the countdown variable
+    //decrease by 1000 to represent a minute
+    //use setInterval or setTimeout within a use effect
+    setTimeout(() => {});
+  }
   return (
     <div className="equation">
       <div className="equation__row">
@@ -84,6 +94,7 @@ function Equation() {
       <button className="btn" text="Submit" onClick={() => inputResponse()}>
         Submit
       </button>
+      <Timer />
     </div>
   );
 }
