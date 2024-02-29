@@ -57,17 +57,12 @@ function Equation() {
   }
 
   const removeInput = () => {
-    setEnteredValues((prevEnteredValue) => {
-      if (!prevEnteredValue) {
-        setResponse("");
-      } else {
-        const mutatableTextBox = [...prevEnteredValue];
-        mutatableTextBox.splice(mutatableTextBox.length - 1, 1);
-        return setResponse(mutatableTextBox);
-      }
-    });
+    //remove the last item in the string
+    let str = response;
+    str = str.slice(0, -1);
+    setResponse(str);
+    setEnteredValues(str);
   };
-  console.log(response);
   return (
     <div className="equation">
       <div className="equation__row">
