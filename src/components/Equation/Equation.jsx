@@ -55,6 +55,19 @@ function Equation() {
     //use setInterval or setTimeout within a use effect
     setTimeout(() => {});
   }
+
+  const removeInput = () => {
+    setEnteredValues((prevEnteredValue) => {
+      if (!prevEnteredValue) {
+        setResponse("");
+      } else {
+        const mutatableTextBox = [...prevEnteredValue];
+        mutatableTextBox.splice(mutatableTextBox.length - 1, 1);
+        return setResponse(mutatableTextBox);
+      }
+    });
+  };
+  console.log(response);
   return (
     <div className="equation">
       <div className="equation__row">
@@ -89,6 +102,15 @@ function Equation() {
           onClick={() => valueInput(0)}
         >
           0
+        </button>
+        <button
+          key="<"
+          className="equation__btn"
+          data-key="errase"
+          aria-label=" "
+          onClick={() => removeInput()}
+        >
+          🔙
         </button>
       </div>
       <button className="btn" text="Submit" onClick={() => inputResponse()}>
