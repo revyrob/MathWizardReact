@@ -55,6 +55,14 @@ function Equation() {
     //use setInterval or setTimeout within a use effect
     setTimeout(() => {});
   }
+
+  const removeInput = () => {
+    //remove the last item in the string
+    let str = response;
+    str = str.slice(0, -1);
+    setResponse(str);
+    setEnteredValues(str);
+  };
   return (
     <div className="equation">
       <div className="equation__row">
@@ -89,6 +97,15 @@ function Equation() {
           onClick={() => valueInput(0)}
         >
           0
+        </button>
+        <button
+          key="<"
+          className="equation__btn"
+          data-key="errase"
+          aria-label=" "
+          onClick={() => removeInput()}
+        >
+          🔙
         </button>
       </div>
       <button className="btn" text="Submit" onClick={() => inputResponse()}>
