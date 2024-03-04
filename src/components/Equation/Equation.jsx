@@ -4,7 +4,6 @@ import Timer from "../Timer/Timer";
 
 function Equation() {
   const nums = 12;
-  const countDown = 10800;
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
   const [response, setResponse] = useState("");
@@ -32,7 +31,7 @@ function Equation() {
   const inputResponse = () => {
     if (enteredValues.length === 1 || enteredValues.length === 3) {
       // Do something with the response, for now, clear the input
-      if (parseInt(response) === unknown_num) {
+      if (parseInt(enteredValues) === unknown_num) {
         //set a back something to show correct
         console.log("correct");
         setWins(wins + 1);
@@ -42,10 +41,12 @@ function Equation() {
         setLosses(losses + 1);
       }
     }
+    //why for the first correct or wrong answer the state of loss or win is still zero
+    console.log("Here are your wins " + wins + " and your losses " + losses);
+
     setTimeout(clearInput(), 100);
     setNumber_given(Math.floor(Math.random() * nums));
     setUnknown_num(Math.floor(Math.random() * nums));
-    console.log("Here are your wins " + wins + " and your losses " + losses);
   };
 
   function loop() {
@@ -63,6 +64,7 @@ function Equation() {
     setResponse(str);
     setEnteredValues(str);
   };
+
   return (
     <div className="equation">
       <div className="equation__row">
