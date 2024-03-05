@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "./Equation.scss";
 import Timer from "../Timer/Timer";
-import { useNavigate } from "react-router-dom";
 import Final from "../Final/Final";
 
 function Equation() {
-  let navigate = useNavigate();
-
   const nums = 12;
   let counter = 0;
   const [isComplete, setIsComplete] = useState(false);
@@ -54,8 +51,8 @@ function Equation() {
     }
     //why for the first correct or wrong answer the state of loss or win is still zero
     console.log("Here are your wins " + wins + " and your losses " + losses);
-    counter += 1;
-    setTimeout(clearInput(), 100);
+
+    setTimeout(() => clearInput(), 100);
     setNumber_given(Math.floor(Math.random() * nums));
     setUnknown_num(Math.floor(Math.random() * nums));
     return counter;

@@ -30,7 +30,8 @@ const Timer = ({ delayResend = "90", isComplete, onCompleteChange }) => {
 
   return (
     <span>
-      {minutes}:{seconds}
+      {minutes < 10 ? "0" + minutes : minutes}:
+      {seconds < 10 ? "0" + seconds : seconds}
     </span>
   );
 };
