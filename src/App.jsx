@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/equation" element={<EquationPage />} />
-        <Route path="/final" element={<FinalPage />} />
+        <Route path="/score" element={<FinalPage />} />
       </Routes>
     </BrowserRouter>
   );

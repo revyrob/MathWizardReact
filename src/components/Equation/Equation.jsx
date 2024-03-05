@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import "./Equation.scss";
 import Timer from "../Timer/Timer";
+import { useNavigate } from "react-router-dom";
+import Final from "../Final/Final";
 
 function Equation() {
+  let navigate = useNavigate();
+
   const nums = 12;
+  let counter = 0;
+  const [isComplete, setIsComplete] = useState(false);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
   const [response, setResponse] = useState("");
@@ -28,6 +34,11 @@ function Equation() {
     setResponse(""); // Clear response
   };
 
+  // Function to handle completion state changes
+  const handleCompleteChange = (newCompleteState) => {
+    setIsComplete(newCompleteState);
+  };
+
   const inputResponse = () => {
     if (enteredValues.length === 1 || enteredValues.length === 3) {
       // Do something with the response, for now, clear the input
@@ -43,19 +54,12 @@ function Equation() {
     }
     //why for the first correct or wrong answer the state of loss or win is still zero
     console.log("Here are your wins " + wins + " and your losses " + losses);
-
+    counter += 1;
     setTimeout(clearInput(), 100);
     setNumber_given(Math.floor(Math.random() * nums));
     setUnknown_num(Math.floor(Math.random() * nums));
+    return counter;
   };
-
-  function loop() {
-    //when the game starts it needs to start the timer
-    //timer is coming from the countdown variable
-    //decrease by 1000 to represent a minute
-    //use setInterval or setTimeout within a use effect
-    setTimeout(() => {});
-  }
 
   const removeInput = () => {
     //remove the last item in the string
@@ -64,57 +68,67 @@ function Equation() {
     setResponse(str);
     setEnteredValues(str);
   };
-
+  //within the return make a choice of two things happen if the timer is not 0seconds then keep asking questions
+  //else link to the final page and pass the props of score to it.
   return (
-    <div className="equation">
-      <div className="equation__row">
-        <div>{number_given} x </div>
-        <input
-          className="equation__input"
-          value={response}
-          type="number"
-          readOnly
-        />
-        <div> = {given_sum}</div>
-      </div>
-      <div className="equation__keyboard">
-        {[...Array(9).keys()].map((index) => (
-          <button
-            key={index}
-            className="equation__btn"
-            value={index + 1}
-            data-key={index + 1}
-            aria-label={`add ${index + 1}`}
-            onClick={() => valueInput(index + 1)}
-          >
-            {index + 1}
+    <>
+      {isComplete === false ? (
+        <div className="equation">
+          <div className="equation__row">
+            <div>{number_given} x </div>
+            <input
+              className="equation__input"
+              value={response}
+              type="number"
+              readOnly
+            />
+            <div> = {given_sum}</div>
+          </div>
+          <div className="equation__keyboard">
+            {[...Array(9).keys()].map((index) => (
+              <button
+                key={index}
+                className="equation__btn"
+                value={index + 1}
+                data-key={index + 1}
+                aria-label={`add ${index + 1}`}
+                onClick={() => valueInput(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              key="0"
+              className="equation__btn"
+              data-key="0"
+              aria-label="add 0"
+              value={0}
+              onClick={() => valueInput(0)}
+            >
+              0
+            </button>
+            <button
+              key="<"
+              className="equation__btn"
+              data-key="errase"
+              aria-label=" "
+              onClick={() => removeInput()}
+            >
+              🔙
+            </button>
+          </div>
+          <button className="btn" text="Submit" onClick={() => inputResponse()}>
+            Submit
           </button>
-        ))}
-        <button
-          key="0"
-          className="equation__btn"
-          data-key="0"
-          aria-label="add 0"
-          value={0}
-          onClick={() => valueInput(0)}
-        >
-          0
-        </button>
-        <button
-          key="<"
-          className="equation__btn"
-          data-key="errase"
-          aria-label=" "
-          onClick={() => removeInput()}
-        >
-          🔙
-        </button>
-      </div>
-      <button className="btn" text="Submit" onClick={() => inputResponse()}>
-        Submit
-      </button>
-      <Timer />
-    </div>
+          <Timer
+            isComplete={isComplete}
+            onCompleteChange={handleCompleteChange}
+          />
+        </div>
+      ) : (
+        <Final losses={losses} wins={wins} />
+      )}
+    </>
   );
 }
 
