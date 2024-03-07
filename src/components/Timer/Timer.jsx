@@ -6,27 +6,20 @@ const Timer = ({ delayResend = "90", isComplete, onCompleteChange }) => {
   const minutes = Math.floor(delay / 60);
   const seconds = Math.floor(delay % 60);
 
-  function zero() {
-    if (minutes === 0 && seconds === 0) {
-      isComplete(true);
-      onCompleteChange(true);
-    }
-  }
-
   useEffect(() => {
     const timer = setInterval(() => {
-      setDelay(delay - 1);
+      setDelay((prevDelay) => prevDelay - 1);
     }, 1000);
 
     if (delay === 0) {
-      zero();
+      onCompleteChange(true);
       clearInterval(timer);
     }
 
     return () => {
       clearInterval(timer);
     };
-  }, [delay]);
+  }, [delay, onCompleteChange]);
 
   return (
     <span>

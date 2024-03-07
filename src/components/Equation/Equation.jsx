@@ -5,7 +5,6 @@ import Final from "../Final/Final";
 
 function Equation() {
   const nums = 12;
-  let counter = 0;
   const [isComplete, setIsComplete] = useState(false);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
@@ -50,12 +49,10 @@ function Equation() {
       }
     }
     //why for the first correct or wrong answer the state of loss or win is still zero
-    console.log("Here are your wins " + wins + " and your losses " + losses);
-
     setTimeout(() => clearInput(), 100);
     setNumber_given(Math.floor(Math.random() * nums));
     setUnknown_num(Math.floor(Math.random() * nums));
-    return counter;
+    console.log(wins);
   };
 
   const removeInput = () => {
