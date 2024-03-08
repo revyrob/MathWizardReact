@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Equation.scss";
 import Timer from "../Timer/Timer";
 import Final from "../Final/Final";
+import Confetti from "react-confetti";
 
 function Equation() {
   const nums = 12;
@@ -10,6 +11,8 @@ function Equation() {
   const [losses, setLosses] = useState(0);
   const [response, setResponse] = useState("");
   const [enteredValues, setEnteredValues] = useState(""); // State to track entered values
+  //if there is a win show confetti
+  const [showWin, setShowWin] = useState(false);
 
   const [number_given, setNumber_given] = useState(
     Math.floor(Math.random() * nums)
@@ -40,11 +43,12 @@ function Equation() {
       // Do something with the response, for now, clear the input
       if (parseInt(enteredValues) === unknown_num) {
         //set a back something to show correct
-        console.log("correct");
+        // console.log("correct");
+        setShowWin(true);
         setWins(wins + 1);
       } else {
         //set something to show wrong
-        console.log("wrong");
+        // console.log("wrong");
         setLosses(losses + 1);
       }
     }
@@ -52,7 +56,7 @@ function Equation() {
     setTimeout(() => clearInput(), 100);
     setNumber_given(Math.floor(Math.random() * nums));
     setUnknown_num(Math.floor(Math.random() * nums));
-    console.log(wins);
+    // console.log(wins);
   };
 
   const removeInput = () => {
@@ -62,63 +66,79 @@ function Equation() {
     setResponse(str);
     setEnteredValues(str);
   };
-  //within the return make a choice of two things happen if the timer is not 0seconds then keep asking questions
-  //else link to the final page and pass the props of score to it.
+
+  useEffect(() => {
+    if (showWin) {
+      const timer = setTimeout(() => {
+        setShowWin(false); // Update showWin to whatever value you need after 500ms
+      }, 2000);
+
+      return () => clearTimeout(timer); // Clear the timeout if component unmounts before 500ms
+    }
+  }, [showWin]);
+
   return (
     <>
       {isComplete === false ? (
-        <div className="equation">
-          <div className="equation__row">
-            <div>{number_given} x </div>
-            <input
-              className="equation__input"
-              value={response}
-              type="number"
-              readOnly
-            />
-            <div> = {given_sum}</div>
-          </div>
-          <div className="equation__keyboard">
-            {[...Array(9).keys()].map((index) => (
+        <>
+          {showWin && <Confetti />}
+          <div className="equation">
+            <div className="equation__row">
+              <div>{number_given} x </div>
+              <input
+                className="equation__input"
+                value={response}
+                type="number"
+                readOnly
+              />
+              <div> = {given_sum}</div>
+            </div>
+            <div className="equation__keyboard">
+              {[...Array(9).keys()].map((index) => (
+                <button
+                  key={index}
+                  className="equation__btn"
+                  value={index + 1}
+                  data-key={index + 1}
+                  aria-label={`add ${index + 1}`}
+                  onClick={() => valueInput(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
               <button
-                key={index}
+                key="0"
                 className="equation__btn"
-                value={index + 1}
-                data-key={index + 1}
-                aria-label={`add ${index + 1}`}
-                onClick={() => valueInput(index + 1)}
+                data-key="0"
+                aria-label="add 0"
+                value={0}
+                onClick={() => valueInput(0)}
               >
-                {index + 1}
+                0
               </button>
-            ))}
+              <button
+                key="<"
+                className="equation__btn"
+                data-key="errase"
+                aria-label=" "
+                onClick={() => removeInput()}
+              >
+                🔙
+              </button>
+            </div>
             <button
-              key="0"
-              className="equation__btn"
-              data-key="0"
-              aria-label="add 0"
-              value={0}
-              onClick={() => valueInput(0)}
+              className="btn"
+              text="Submit"
+              onClick={() => inputResponse()}
             >
-              0
+              Submit
             </button>
-            <button
-              key="<"
-              className="equation__btn"
-              data-key="errase"
-              aria-label=" "
-              onClick={() => removeInput()}
-            >
-              🔙
-            </button>
+            <Timer
+              isComplete={isComplete}
+              onCompleteChange={handleCompleteChange}
+            />
           </div>
-          <button className="btn" text="Submit" onClick={() => inputResponse()}>
-            Submit
-          </button>
-          <Timer
-            isComplete={isComplete}
-            onCompleteChange={handleCompleteChange}
-          />
-        </div>
+        </>
       ) : (
         <Final losses={losses} wins={wins} />
       )}
