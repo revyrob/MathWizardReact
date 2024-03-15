@@ -51,7 +51,6 @@ function Equation() {
         // console.log("correct");
         setShowWin(true);
         setWins(wins + 1);
-        setBgImage("blue");
         console.log("win");
       } else {
         //set something to show wrong
@@ -64,6 +63,7 @@ function Equation() {
     //why for the first correct or wrong answer the state of loss or win is still zero
     // setTimeout(() => clearInput(), 10);
     clearInput();
+    setTimeout(() => setBgImage(""), 100);
     setNumber_given(Math.floor(Math.random() * nums));
     setUnknown_num(Math.floor(Math.random() * nums));
     // console.log(wins);
