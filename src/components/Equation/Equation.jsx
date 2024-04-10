@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Equation.scss";
 import Timer from "../Timer/Timer";
 import Final from "../Final/Final";
-import Confetti from "react-confetti";
 import ConfettiExplosion from "react-confetti-explosion";
-import { clear } from "@testing-library/user-event/dist/clear";
 
 function Equation() {
   const nums = 12;
@@ -96,63 +94,61 @@ function Equation() {
       {isComplete === false ? (
         <>
           {showWin && <ConfettiExplosion />}
-          <div className="equation">
-            <div style={responseImg}>
-              <div className="equation__row">
-                <div>{number_given} x </div>
-                <input
-                  className="equation__input"
-                  value={response}
-                  type="number"
-                  readOnly
-                />
-                <div> = {given_sum}</div>
-              </div>
-              <div className="equation__keyboard">
-                {[...Array(9).keys()].map((index) => (
-                  <button
-                    key={index}
-                    className="equation__btn"
-                    value={index + 1}
-                    data-key={index + 1}
-                    aria-label={`add ${index + 1}`}
-                    onClick={() => valueInput(index + 1)}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
-                <button
-                  key="0"
-                  className="equation__btn"
-                  data-key="0"
-                  aria-label="add 0"
-                  value={0}
-                  onClick={() => valueInput(0)}
-                >
-                  0
-                </button>
-                <button
-                  key="<"
-                  className="equation__btn"
-                  data-key="errase"
-                  aria-label=" "
-                  onClick={() => removeInput()}
-                >
-                  🔙
-                </button>
-              </div>
-              <button
-                className="btn"
-                text="Submit"
-                onClick={() => inputResponse()}
-              >
-                Submit
-              </button>
-              <Timer
-                isComplete={isComplete}
-                onCompleteChange={handleCompleteChange}
+          <div className="equation" style={responseImg}>
+            <div className="equation__row">
+              <div>{number_given} x </div>
+              <input
+                className="equation__input"
+                value={response}
+                type="number"
+                readOnly
               />
+              <div> = {given_sum}</div>
             </div>
+            <div className="equation__keyboard">
+              {[...Array(9).keys()].map((index) => (
+                <button
+                  key={index}
+                  className="equation__btn"
+                  value={index + 1}
+                  data-key={index + 1}
+                  aria-label={`add ${index + 1}`}
+                  onClick={() => valueInput(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                key="0"
+                className="equation__btn"
+                data-key="0"
+                aria-label="add 0"
+                value={0}
+                onClick={() => valueInput(0)}
+              >
+                0
+              </button>
+              <button
+                key="<"
+                className="equation__btn"
+                data-key="errase"
+                aria-label=" "
+                onClick={() => removeInput()}
+              >
+                🔙
+              </button>
+            </div>
+            <button
+              className="btn"
+              text="Submit"
+              onClick={() => inputResponse()}
+            >
+              Submit
+            </button>
+            <Timer
+              isComplete={isComplete}
+              onCompleteChange={handleCompleteChange}
+            />
           </div>
         </>
       ) : (
