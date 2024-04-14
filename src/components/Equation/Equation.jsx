@@ -49,13 +49,11 @@ function Equation() {
         // console.log("correct");
         setShowWin(true);
         setWins(wins + 1);
-        console.log("win");
       } else {
         //set something to show wrong
         // console.log("wrong");
         setLosses(losses + 1);
         setBgImage("red");
-        console.log("loss");
       }
     }
     //why for the first correct or wrong answer the state of loss or win is still zero
@@ -152,7 +150,7 @@ function Equation() {
           </div>
         </>
       ) : (
-        <Final losses={losses} wins={wins} />
+        <Final losses={losses} wins={wins} totalNums={60} />
       )}
     </>
   );

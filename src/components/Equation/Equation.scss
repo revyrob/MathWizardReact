@@ -1,8 +1,12 @@
+@use '../../styles/partials/reset' as *;
+@use '../../styles/partials/variables' as *;
+
 .equation{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    height: 90vh;
     &__keyboard {
         display: flex;
         width: 150px;

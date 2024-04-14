@@ -1,15 +1,16 @@
 @use '../../styles/partials/reset' as *;
 @use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
 
 .btn {
     position: relative;
     overflow: hidden;
-    // margin: 0 2rem;
     margin-bottom: 2rem;
     background: $color-light;
     color: $color-accent;
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     padding: 5% 7%;
     border: 3px solid $color-accent;
@@ -33,5 +34,8 @@
             transform: translateY(50px);
             filter: blur(50px);
         }
+    }
+    @include desktop {
+        font-size: 3rem;
     }
 }

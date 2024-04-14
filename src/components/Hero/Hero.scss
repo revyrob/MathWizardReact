@@ -1,6 +1,8 @@
 @use '../../styles/partials/reset' as *;
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/typography' as *;
+@use '../../styles/partials/mixins' as *;
+
 
 .hero {
     font-family: 'Wizards Magic';
@@ -9,16 +11,29 @@
     text-align: center;
     justify-content: center;
     margin: 0 2rem;
+    &__logo {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+    }
     &__title {
-        font-size: 3.25rem;
+        font-size: 2.25rem;
+        padding: 1.5rem;
         color: $color-dark-sec;
         font-family: Wizards Magic;
-        padding: 3rem;
+        @include desktop {
+            font-size: 3.25rem;
+            padding: 3rem;
+        }
         
     }
     &__mission {
         font-size: 2rem;
         margin-bottom: 2rem;
+        @include desktop {
+            font-size: 1.5rem;
+            padding: 2rem;
+        }
     }
     &__btnDiv {
         display:flex;
