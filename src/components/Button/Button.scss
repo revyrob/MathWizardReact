@@ -10,7 +10,7 @@
     background: $color-light;
     color: $color-accent;
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 700;
     padding: 5% 7%;
     border: 3px solid $color-accent;
@@ -36,6 +36,7 @@
         }
     }
     @include desktop {
-        font-size: 3rem;
+        font-size: 2rem;
+        margin-right: 1rem;
     }
 }

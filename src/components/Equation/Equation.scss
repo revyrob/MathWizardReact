@@ -1,5 +1,7 @@
 @use '../../styles/partials/reset' as *;
 @use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
 
 .equation{
     display: flex;
@@ -7,6 +9,7 @@
     justify-content: space-around;
     align-items: center;
     height: 90vh;
+   
     &__keyboard {
         display: flex;
         width: 150px;

@@ -15,8 +15,6 @@ function Equation() {
   const [showWin, setShowWin] = useState(false);
   const [bgImage, setBgImage] = useState("");
 
-  // const [isExploding, setIsExploding] = useState(false);
-
   const [number_given, setNumber_given] = useState(
     Math.floor(Math.random() * nums)
   );
@@ -46,23 +44,19 @@ function Equation() {
       // Do something with the response, for now, clear the input
       if (parseInt(enteredValues) === unknown_num) {
         //set a back something to show correct
-        // console.log("correct");
         setShowWin(true);
         setWins(wins + 1);
       } else {
         //set something to show wrong
-        // console.log("wrong");
         setLosses(losses + 1);
-        setBgImage("red");
+        setBgImage("images/cross.png");
       }
     }
     //why for the first correct or wrong answer the state of loss or win is still zero
-    // setTimeout(() => clearInput(), 10);
     clearInput();
-    setTimeout(() => setBgImage(""), 100);
+    setTimeout(() => setBgImage(""), 200);
     setNumber_given(Math.floor(Math.random() * nums));
     setUnknown_num(Math.floor(Math.random() * nums));
-    // console.log(wins);
   };
 
   const removeInput = () => {
@@ -84,7 +78,10 @@ function Equation() {
   }, [showWin]);
 
   let responseImg = {
-    backgroundColor: bgImage,
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: "100%",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
   };
 
   return (
