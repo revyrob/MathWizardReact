@@ -19,6 +19,7 @@ body {
     justify-content: space-between;
     flex-direction: column;
     padding: 50px 42px 0;
+    max-width: $tablet-width;
     &__title {
         font-size: 3.25rem;
         color: $color-dark-sec;
@@ -38,8 +39,6 @@ body {
         margin-top: 3rem;
        
         @include desktop {
-            flex-direction: row;
-            width: 25%;
             justify-content: space-between;
       
         }

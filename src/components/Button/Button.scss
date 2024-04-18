@@ -16,9 +16,10 @@
     border: 3px solid $color-accent;
     border-radius: 20px;
     transition: 0.5s;
+    height: 100px;
+    width:100px;
     &::after {
         content: '';
-        width: 100%;
         position: absolute;
         top: 0;
         left: 0;

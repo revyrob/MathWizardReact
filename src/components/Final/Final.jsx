@@ -1,16 +1,26 @@
 import React from "react";
-//need score here
+import "./Final.scss";
 
 export default function Final({ wins, losses, totalNums }) {
   const answered = wins + losses;
   return (
-    <div className="final">
-      Final Score
-      <div className="final">Correct:{wins}</div>
-      <div className="final">Wrong:{losses}</div>
-      <div className="final">Number of questions answered: {answered}</div>
-      <div className="final">Out of: {totalNums}</div>
-      <div className="final">Share</div>
-    </div>
+    <section className="final">
+      <h1 className="final__header">Final Score</h1>
+      <div className="final__score">
+        <p className="final__text">✅ {wins}</p>
+        <p className="final__text">❌ {losses}</p>
+      </div>
+      <div className="final__score">
+        <div className="final__score--long">
+          <p>Answered Questions:</p>
+          <span>{answered}</span>
+        </div>
+        <div className="final__score--long">
+          <p>Total Questions:</p>
+          <span>{totalNums}</span>
+        </div>
+      </div>
+      <div className="final__share">Share</div>
+    </section>
   );
 }
