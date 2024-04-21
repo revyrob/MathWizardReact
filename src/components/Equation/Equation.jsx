@@ -46,6 +46,7 @@ function Equation() {
         //set a back something to show correct
         setShowWin(true);
         setWins(wins + 1);
+        setBgImage("");
       } else {
         //set something to show wrong
         setLosses(losses + 1);
@@ -71,7 +72,7 @@ function Equation() {
     if (showWin) {
       const timer = setTimeout(() => {
         setShowWin(false); // Update showWin to whatever value you need after 500ms
-      }, 1000);
+      }, 500);
 
       return () => clearTimeout(timer); // Clear the timeout if component unmounts before 500ms
     }
