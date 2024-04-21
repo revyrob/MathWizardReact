@@ -1,9 +1,15 @@
+@use '../../styles/partials/reset' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+
 .equation{
     display: flex;
     flex-direction: column;
-    height: 90vh;
     justify-content: space-around;
     align-items: center;
+    height: 85vh;
+   
     &__keyboard {
         display: flex;
         width: 150px;

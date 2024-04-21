@@ -3,6 +3,14 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center; 
+    border-bottom: 1px solid $color-accent-sec;
+    &__title {
+        font-size: 2.25rem;
+        padding: 1.5rem;
+        color: $color-dark-sec;
+        font-family: Wizards Magic;
+        text-align: center;
+    }
 }
