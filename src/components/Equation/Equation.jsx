@@ -4,8 +4,7 @@ import Timer from "../Timer/Timer";
 import Final from "../Final/Final";
 import ConfettiExplosion from "react-confetti-explosion";
 
-function Equation() {
-  const nums = 12;
+function Equation({ array1, array2 }) {
   const [isComplete, setIsComplete] = useState(false);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
@@ -14,14 +13,10 @@ function Equation() {
   //if there is a win show confetti
   const [showWin, setShowWin] = useState(false);
   const [bgImage, setBgImage] = useState("");
+  const [currentNumberIndex, setCurrentNumberIndex] = useState(0);
 
-  const [number_given, setNumber_given] = useState(
-    Math.floor(Math.random() * nums)
-  );
-  const [unknown_num, setUnknown_num] = useState(
-    Math.floor(Math.random() * nums)
-  );
-
+  const number_given = array1[currentNumberIndex];
+  const unknown_num = array2[currentNumberIndex];
   const given_sum = number_given * unknown_num;
 
   const valueInput = (value) => {
@@ -56,8 +51,7 @@ function Equation() {
     //why for the first correct or wrong answer the state of loss or win is still zero
     clearInput();
     setTimeout(() => setBgImage(""), 200);
-    setNumber_given(Math.floor(Math.random() * nums));
-    setUnknown_num(Math.floor(Math.random() * nums));
+    setCurrentNumberIndex(currentNumberIndex + 1);
   };
 
   const removeInput = () => {
