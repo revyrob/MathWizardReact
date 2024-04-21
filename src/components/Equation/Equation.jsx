@@ -8,7 +8,6 @@ function Equation({ array1, array2 }) {
   const [isComplete, setIsComplete] = useState(false);
   const [wins, setWins] = useState(0);
   const [losses, setLosses] = useState(0);
-  const [response, setResponse] = useState("");
   const [enteredValues, setEnteredValues] = useState(""); // State to track entered values
   //if there is a win show confetti
   const [showWin, setShowWin] = useState(false);
@@ -19,15 +18,15 @@ function Equation({ array1, array2 }) {
   const unknown_num = array2[currentNumberIndex];
   const given_sum = number_given * unknown_num;
 
-  console.log(array1, array2);
   const valueInput = (value) => {
     setEnteredValues(enteredValues + value); // Append the entered value
-    setResponse(enteredValues + value); // Update response state
   };
 
   const clearInput = () => {
     setEnteredValues(""); // Clear entered values
-    setResponse(""); // Clear response
+    setTimeout(() => {
+      setBgImage(""); // Clear the background image after a short delay or it won't show at all
+    }, 450);
   };
 
   // Function to handle completion state changes
@@ -36,38 +35,31 @@ function Equation({ array1, array2 }) {
   };
 
   const inputResponse = () => {
-    if (enteredValues.length === 1 || enteredValues.length === 3) {
-      // Do something with the response, for now, clear the input
-      if (parseInt(enteredValues) === unknown_num) {
-        //set a back something to show correct
-        setShowWin(true);
-        setWins(wins + 1);
-        setBgImage("");
-      } else {
-        //set something to show wrong
-        setLosses(losses + 1);
-        setBgImage("images/cross.png");
-      }
+    if (parseInt(enteredValues) === unknown_num) {
+      //set a back something to show correct
+      setShowWin(true);
+      setWins(wins + 1);
+    } else {
+      //set something to show wrong
+      setLosses(losses + 1);
+      setBgImage("images/cross.png");
     }
-    //why for the first correct or wrong answer the state of loss or win is still zero
     clearInput();
-    setTimeout(() => setBgImage(""), 200);
     setCurrentNumberIndex(currentNumberIndex + 1);
   };
 
   const removeInput = () => {
     //remove the last item in the string
-    let str = response;
+    let str = enteredValues;
     str = str.slice(0, -1);
-    setResponse(str);
     setEnteredValues(str);
   };
 
   useEffect(() => {
     if (showWin) {
       const timer = setTimeout(() => {
-        setShowWin(false); // Update showWin to whatever value you need after 500ms
-      }, 500);
+        setShowWin(false); // Update showWin to whatever value you need after 300ms
+      }, 300);
 
       return () => clearTimeout(timer); // Clear the timeout if component unmounts before 500ms
     }
@@ -90,7 +82,7 @@ function Equation({ array1, array2 }) {
               <div>{number_given} x </div>
               <input
                 className="equation__input"
-                value={response}
+                value={enteredValues}
                 type="number"
                 readOnly
               />
