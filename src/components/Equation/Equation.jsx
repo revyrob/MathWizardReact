@@ -19,6 +19,7 @@ function Equation({ array1, array2 }) {
   const unknown_num = array2[currentNumberIndex];
   const given_sum = number_given * unknown_num;
 
+  console.log(array1, array2);
   const valueInput = (value) => {
     setEnteredValues(enteredValues + value); // Append the entered value
     setResponse(enteredValues + value); // Update response state
