@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Timer = ({ delayResend = "90", isComplete, onCompleteChange }) => {
+const Timer = ({ delayResend = "25", isComplete, onCompleteChange }) => {
   const [delay, setDelay] = useState(+delayResend);
   //set a state for when the time is out
   const minutes = Math.floor(delay / 60);
