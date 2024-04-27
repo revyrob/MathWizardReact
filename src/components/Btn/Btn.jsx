@@ -1,6 +1,6 @@
-import "./Button.scss";
+import "./Btn.scss";
 
-function Button({ text, className }) {
+function Btn({ text, className }) {
   return (
     <button className="btn">
       <span className={className}>{text}</span>
@@ -8,4 +8,4 @@ function Button({ text, className }) {
   );
 }
 
-export default Button;
+export default Btn;
