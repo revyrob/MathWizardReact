@@ -8,7 +8,7 @@ function Homepage() {
     <section className="wizard-style">
       <Hero />
       <div className="wizard-style__wrapper">
-        <Link to="/equation">
+        <Link to="/range">
           <Btn className="goToGame__btn" text="Play Game" />
         </Link>
         {/* <Link to="">

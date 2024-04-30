@@ -1,8 +1,9 @@
 import React from "react";
-import Equation from "../components/Equation/Equation";
+import Equation2 from "../components/Equation2/Equation2";
 import Header from "../components/Header/Header";
+import Equation1 from "../components/Equation1/Equation1";
 
-function EquationPage() {
+function EquationPage({ level }) {
   //making an an array for each game, which would switch every 24 hours
   function makeArray(count, max) {
     let newArray = [];
@@ -22,7 +23,11 @@ function EquationPage() {
   return (
     <div className="wizard-style__wrapper">
       <Header />
-      <Equation array1={array1} array2={array2} />
+      {level && level === "level2" ? (
+        <Equation2 array1={array1} array2={array2} />
+      ) : (
+        <Equation1 array1={array1} array2={array2} />
+      )}
     </div>
   );
 }
