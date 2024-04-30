@@ -35,33 +35,37 @@ export default function Final({ wins, losses, totalNums }) {
       </div>
       <div className="final__score">
         <div className="final__score--long">
-          <p>Correct Percentage</p>{" "}
+          <div>
+            <p>Correct Percentage</p>{" "}
+            <OverlayTrigger
+              trigger="click"
+              placement="bottom"
+              overlay={correctPopover}
+              className="final__overlay"
+            >
+              <img src={question} alt="test" />
+            </OverlayTrigger>
+          </div>
           {/* beside the p tag have a question mark to explain what it is */}
           <span>{(correctPerc * 100).toFixed(0)}%</span>{" "}
-          <OverlayTrigger
-            trigger="click"
-            placement="bottom"
-            overlay={correctPopover}
-            className="final__overlay"
-          >
-            <img src={question} alt="test" />
-          </OverlayTrigger>
         </div>
         <div className="final__score--long">
-          <p>Response Percentage</p>
+          <div>
+            <p>Response Percentage</p>{" "}
+            <OverlayTrigger
+              trigger="click"
+              placement="bottom"
+              overlay={responsePopover}
+              className="final__overlay"
+            >
+              <img src={question} alt="test" />
+            </OverlayTrigger>
+          </div>
           {/* beside the p tag have a question mark to explain what it is */}
           <span>{(responsePerc * 100).toFixed(0)}%</span>
-          <OverlayTrigger
-            trigger="click"
-            placement="bottom"
-            overlay={responsePopover}
-            className="final__overlay"
-          >
-            <img src={question} alt="test" />
-          </OverlayTrigger>
         </div>
       </div>
-      <div className="final__share">Share</div>
+      {/* <div className="final__share">Share</div> */}
     </section>
   );
 }

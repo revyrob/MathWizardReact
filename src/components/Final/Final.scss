@@ -38,5 +38,15 @@
     &__overlay {
         background: grey !important;
         color:black !important;
+        z-index: 5;
+    }
+}
+#popover-basic {
+    background-color: $color-light-sec;
+    padding: .75rem;
+    border-radius: 15px;
+    color: black;
+    h3 {
+        font-weight: 700;
     }
 }
