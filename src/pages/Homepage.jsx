@@ -11,9 +11,9 @@ function Homepage() {
         <Link to="/equation">
           <Btn className="goToGame__btn" text="Play Game" />
         </Link>
-        <Link to="">
+        {/* <Link to="">
           <Btn className="goToGame__btn" text="How to Play" />
-        </Link>
+        </Link> */}
       </div>
     </section>
   );
