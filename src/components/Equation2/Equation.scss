@@ -12,7 +12,7 @@
    
     &__keyboard {
         display: flex;
-        width: 150px;
+        width: 200px;
         height: 200px;
         flex-wrap: wrap;
         justify-content: center;
@@ -20,6 +20,8 @@
     &__btn {
         width: 50px !important;
         height: 50px !important;
+        font-size:1.5rem;
+        margin:.25rem;
     }
     &__row {
         display: flex;

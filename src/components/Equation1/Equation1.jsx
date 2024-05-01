@@ -80,7 +80,7 @@ function Equation({ array1, array2 }) {
           <div className="equation" style={responseImg}>
             <div className="equation__row">
               <div>
-                {number_given} x {unknown_num}
+                {number_given} &times; {unknown_num}
               </div>
               =
               <input

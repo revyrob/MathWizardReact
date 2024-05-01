@@ -36,7 +36,7 @@ export default function Final({ wins, losses, totalNums }) {
       <div className="final__score">
         <div className="final__score--long">
           <div>
-            <p>Correct Percentage</p>{" "}
+            <p className="final__score--subtitle">Correct Percentage</p>{" "}
             <OverlayTrigger
               trigger="click"
               placement="bottom"
