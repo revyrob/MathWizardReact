@@ -12,7 +12,7 @@ body {
 }
 
 .wizard-style {
-    font-family: 'Wizards Magic';
+    font-family: Wizards Magic;
     height: 100%;
     display: flex;
     align-items: center;
@@ -43,12 +43,21 @@ body {
       
         }
     }
+    &__date {
+        font-family: 'Courier New', Courier, monospace;
+        //font-size: 1.25rem;
+        width:fit-content;
+        margin-right:auto;
+        margin-left:auto;
+    }
 }
 
 .goToGame {
     margin-top: 3rem;
     justify-content: center;
     text-align: center;
+   
+   
     }
 
     .number {
