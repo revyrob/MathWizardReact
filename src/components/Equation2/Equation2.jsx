@@ -79,7 +79,7 @@ function Equation({ array1, array2 }) {
           {showWin && <ConfettiExplosion />}
           <div className="equation" style={responseImg}>
             <div className="equation__row">
-              <div>{number_given} x </div>
+              <div>{number_given} &times; </div>
               <input
                 className="equation__input"
                 value={enteredValues}
