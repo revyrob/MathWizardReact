@@ -18,10 +18,13 @@
         justify-content: center;
     }
     &__btn {
-        width: 50px !important;
-        height: 50px !important;
+        width: 55px !important;
+        height: 55px !important;
         font-size:1.5rem;
         margin:.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     &__row {
         display: flex;
