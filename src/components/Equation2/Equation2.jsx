@@ -59,7 +59,7 @@ function Equation({ array1, array2 }) {
     if (showWin) {
       const timer = setTimeout(() => {
         setShowWin(false); // Update showWin to whatever value you need after 300ms
-      }, 300);
+      }, 200);
 
       return () => clearTimeout(timer); // Clear the timeout if component unmounts before 500ms
     }

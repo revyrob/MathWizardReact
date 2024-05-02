@@ -6,6 +6,12 @@ import Popover from "react-bootstrap/Popover";
 import question from "../../assets/question-circle.svg";
 
 export default function Final({ wins, losses, totalNums }) {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + "/" + dd + "/" + yyyy;
   const answered = wins + losses;
   const correctPerc = wins / answered;
   const responsePerc = answered / totalNums;
@@ -66,6 +72,7 @@ export default function Final({ wins, losses, totalNums }) {
         </div>
       </div>
       {/* <div className="final__share">Share</div> */}
+      <p className="wizard-style__date">{today}</p>
     </section>
   );
 }
