@@ -8,18 +8,19 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 75vh;
+    height: 80vh;
    
     &__keyboard {
         display: flex;
-        width: 200px;
-        height: 200px;
+        width: 275px;
+        // height: 200px;
         flex-wrap: wrap;
         justify-content: center;
     }
     &__btn {
-        width: 55px !important;
-        height: 55px !important;
+        width: 70px !important;
+        height: 70px !important;
+        border-radius: 50%;;
         font-size:1.5rem;
         margin:.25rem;
         display: flex;
