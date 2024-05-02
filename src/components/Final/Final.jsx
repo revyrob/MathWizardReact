@@ -28,7 +28,7 @@ export default function Final({ wins, losses, totalNums }) {
     <Popover id="popover-basic">
       <Popover.Header as="h3">What is response percentage?</Popover.Header>
       <Popover.Body>
-        Percentage of all responses/all questions (60 questions)
+        Percentage of all responses/all questions (50 questions)
       </Popover.Body>
     </Popover>
   );

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import { useNavigate } from "react-router-dom";
 import Btn from "../components/Btn/Btn";
-import { useSearchParams } from "react-router-dom";
 
 function Range() {
   const [level, setLevel] = useState("");
   const navigate = useNavigate();
 
   //function navigate to equation page
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function goToEquation(level) {
     navigate(`/equation?level=${level}`);
   }
@@ -24,7 +24,6 @@ function Range() {
       goToEquation(level);
     }
   }, [goToEquation, level]); // Run this effect whenever level state changes
-  console.log(level);
   return (
     <>
       <div className="wizard-style__wrapper">
@@ -45,6 +44,12 @@ function Range() {
             onClick={chooseLevel}
             text="Level 2"
           />
+          {/* <Btn
+            className={"goToGame__btn--2"}
+            value={"level3"}
+            onClick={chooseLevel}
+            text="Vivian 3"
+          /> */}
         </div>
       </div>
     </>

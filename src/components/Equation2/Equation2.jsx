@@ -135,7 +135,7 @@ function Equation({ array1, array2 }) {
           </div>
         </>
       ) : (
-        <Final losses={losses} wins={wins} totalNums={60} />
+        <Final losses={losses} wins={wins} totalNums={50} />
       )}
     </>
   );

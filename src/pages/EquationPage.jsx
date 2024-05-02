@@ -9,20 +9,20 @@ function EquationPage() {
 
   const level = searchParams.get("level");
   //making an an array for each game, which would switch every 24 hours
-  function makeArray(count, max) {
-    let newArray = [];
-    for (let i = 0; i < count; i++) {
-      let newNum;
-      do {
-        newNum = Math.floor(Math.random() * max);
-      } while (newNum === 0); // Keep regenerating new numbers until it's not zero
-      newArray.push(newNum);
-    }
-    return newArray;
-  }
+  // function makeArray(count, max) {
+  //   let newArray = [];
+  //   for (let i = 0; i < count; i++) {
+  //     let newNum;
+  //     do {
+  //       newNum = Math.floor(Math.random() * max);
+  //     } while (newNum === 0); // Keep regenerating new numbers until it's not zero
+  //     newArray.push(newNum);
+  //   }
+  //   return newArray;
+  // }
 
-  console.log(makeArray(50, 13));
-  console.log(makeArray(50, 13));
+  // console.log(makeArray(50, 13));
+  // console.log(makeArray(50, 13));
 
   const array1 = [
     8, 2, 9, 7, 6, 2, 1, 8, 4, 4, 10, 11, 2, 2, 8, 3, 4, 5, 1, 6, 9, 5, 5, 4, 6,
