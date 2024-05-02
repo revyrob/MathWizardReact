@@ -9,7 +9,7 @@ function Range() {
   function chooseLevel(e) {
     const { value } = e.target.value;
     setLevel(value);
-    //console.log(level);
+    console.log(level);
   }
   return (
     <div className="wizard-style__wrapper">
