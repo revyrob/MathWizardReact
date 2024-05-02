@@ -30,6 +30,7 @@ function EquationPage({ level }) {
     1, 11, 11, 3, 7, 12, 5, 5, 9, 7, 8, 2, 3, 12, 12, 9, 2, 4, 7, 9, 7, 1, 2, 4,
     4, 2, 10, 10, 12, 1, 2, 8, 9, 3, 10, 10,
   ];
+  console.log(level);
   return (
     <div className="wizard-style__wrapper">
       <Header />
