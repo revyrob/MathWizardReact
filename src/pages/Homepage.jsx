@@ -10,7 +10,6 @@ function Homepage() {
   var yyyy = today.getFullYear();
 
   today = mm + "/" + dd + "/" + yyyy;
-  console.log(today);
   return (
     <section className="wizard-style">
       <Hero />
