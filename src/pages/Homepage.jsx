@@ -20,9 +20,9 @@ function Homepage() {
         {/* <Link to="">
           <Btn className="goToGame__btn" text="How to Play" />
         </Link> */}
-        <p className="wizard-style__date">{today}</p>
-        <p className="wizard-style__date">No. 2</p>
-        <p className="wizard-style__date">Editted by Kayle Robson</p>
+        <p className="wizard-style__date">May 7th, 2024</p>
+        <p className="wizard-style__date">No. 3</p>
+        <p className="wizard-style__date">Edited by Kayle Robson</p>
       </div>
     </section>
   );
