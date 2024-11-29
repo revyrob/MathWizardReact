@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Equation2 from "../components/Equation2/Equation2";
 import Header from "../components/Header/Header";
-import Equation1 from "../components/Equation1/Equation1";
+import Equation from "../components/Equation/Equation";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
@@ -44,10 +43,8 @@ function EquationPage() {
       <Header />
       {loading ? (
         <p>Loading...</p>
-      ) : level && level === "level2" ? (
-        <Equation2 array1={arrayAgainst} array2={arraysTogether} />
       ) : (
-        <Equation1 array1={arrayAgainst} array2={arraysTogether} />
+        <Equation array1={arrayAgainst} array2={arraysTogether} level={level} />
       )}
     </div>
   );
