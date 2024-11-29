@@ -12,10 +12,11 @@ function Equation({ array1, array2 }) {
   //if there is a win show confetti
   const [showWin, setShowWin] = useState(false);
   const [bgImage, setBgImage] = useState("");
-  const [currentNumberIndex, setCurrentNumberIndex] = useState(0);
-
-  const number_given = array1[currentNumberIndex];
-  const unknown_num = array2[currentNumberIndex];
+  const [currentNumberIndexGiven, setCurrentNumberIndexGiven] = useState(0);
+  const [currentNumberIndexUnknown, setCurrentNumberIndexUnknown] = useState(0);
+  //since array2 is all arrays I need to take all arrays
+  const number_given = array1[currentNumberIndexGiven];
+  const unknown_num = array2[currentNumberIndexUnknown];
   const given_sum = number_given * unknown_num;
 
   const valueInput = (value) => {
@@ -45,7 +46,13 @@ function Equation({ array1, array2 }) {
       setBgImage("images/cross.png");
     }
     clearInput();
-    setCurrentNumberIndex(currentNumberIndex + 1);
+    if (currentNumberIndexGiven < 11) {
+      setCurrentNumberIndexGiven(currentNumberIndexGiven + 1);
+    } else {
+      setCurrentNumberIndexGiven(0);
+    }
+
+    setCurrentNumberIndexUnknown(currentNumberIndexUnknown + 1);
   };
 
   const removeInput = () => {
