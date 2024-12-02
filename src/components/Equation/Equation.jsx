@@ -17,9 +17,9 @@ function Equation({ array1, array2, level }) {
   //if there is a win show confetti
   const [showWin, setShowWin] = useState(false); //end page for show win
   const [bgImage, setBgImage] = useState(""); //for X when it comes across page if the answer is wrong
-  const [currentNumberIndexGiven, setCurrentNumberIndexGiven] = useState(0); //counting in the array for small array given
-  const [currentNumberIndexUnknown, setCurrentNumberIndexUnknown] = useState(0); //counting in the array for the larger array
-  const [delay, setDelay] = useState(5); //seconds for how long the games will run
+  const [currentNumberIndexGiven, setCurrentNumberIndexGiven] = useState(0); //counting in the array for large array given
+  const [currentNumberIndexUnknown, setCurrentNumberIndexUnknown] = useState(0); //counting in the array for the small array
+  const [delay, setDelay] = useState(45); //seconds for how long the games will run
 
   //variables for each equation
   const firstNumber = array1[currentNumberIndexGiven]; //first number in the equation, the number is from the array in the backend
@@ -74,13 +74,17 @@ function Equation({ array1, array2, level }) {
     }
     clearInput();
     //i need this if statement because the shorter array needs to reset the index after 12
-    if (currentNumberIndexGiven < 11) {
+    if (currentNumberIndexUnknown < array2.length - 1) {
+      setCurrentNumberIndexUnknown(currentNumberIndexUnknown + 1);
+    } else {
+      setCurrentNumberIndexUnknown(0);
+    }
+    if (currentNumberIndexGiven < array1.length - 1) {
       setCurrentNumberIndexGiven(currentNumberIndexGiven + 1);
     } else {
       setCurrentNumberIndexGiven(0);
     }
-    //this continues until all 48 are completed
-    setCurrentNumberIndexUnknown(currentNumberIndexUnknown + 1);
+    //this continues until all 40 are completed
   };
 
   //input fuction, counting wins, losses and showing the cross
@@ -97,13 +101,16 @@ function Equation({ array1, array2, level }) {
     }
     clearInput();
     //i need this if statement because the shorter array needs to reset the index after 12
-    if (currentNumberIndexGiven < 11) {
+    if (currentNumberIndexUnknown < array2.length - 1) {
+      setCurrentNumberIndexUnknown(currentNumberIndexUnknown + 1);
+    } else {
+      setCurrentNumberIndexUnknown(0);
+    }
+    if (currentNumberIndexGiven < array1.length - 1) {
       setCurrentNumberIndexGiven(currentNumberIndexGiven + 1);
     } else {
       setCurrentNumberIndexGiven(0);
     }
-    //this continues until all 48 are completed
-    setCurrentNumberIndexUnknown(currentNumberIndexUnknown + 1);
   };
 
   //back space to remove input
@@ -138,7 +145,7 @@ function Equation({ array1, array2, level }) {
       {isComplete === false ? (
         <>
           {showWin && <ConfettiExplosion />}
-          {level && level === "level1" ? (
+          {level && level !== "level4" ? (
             <div className="equation" style={responseImg}>
               <div className="equation__row">
                 <div>
@@ -206,7 +213,6 @@ function Equation({ array1, array2, level }) {
                   value={enteredValues}
                   type="number"
                   readOnly
-                  onkeypress="this.style.width = ((this.value.length + 1) * 8) + 'px';"
                 />
                 <div> = {sumOfNumbers}</div>
               </div>
@@ -258,7 +264,7 @@ function Equation({ array1, array2, level }) {
           )}
         </>
       ) : (
-        <Final losses={losses} wins={wins} totalNums={50} />
+        <Final losses={losses} wins={wins} totalNums={array1.length + 1} />
       )}
     </>
   );
