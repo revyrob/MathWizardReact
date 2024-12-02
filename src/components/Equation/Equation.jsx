@@ -20,9 +20,9 @@ function Equation({ array1, array2, level }) {
   const [currentNumberIndexUnknown, setCurrentNumberIndexUnknown] = useState(0); //counting in the array for the larger array
 
   //variables for each equation
-  const number_given = array1[currentNumberIndexGiven];
-  const unknown_num = array2[currentNumberIndexUnknown];
-  const given_sum = number_given * unknown_num;
+  const firstNumber = array1[currentNumberIndexGiven];
+  const secondNumber = array2[currentNumberIndexUnknown];
+  const sumOfNumbers = firstNumber * secondNumber;
 
   //value input from the user and then amending the enteredValues
   const valueInput = (value) => {
@@ -43,8 +43,32 @@ function Equation({ array1, array2, level }) {
   };
 
   //input fuction, counting wins, losses and showing the cross
-  const inputResponse = () => {
-    if (parseInt(enteredValues) === given_sum) {
+  //this is for the input sum of numbers
+  const inputResponseSum = () => {
+    if (parseInt(enteredValues) === sumOfNumbers) {
+      //set a back something to show correct
+      setShowWin(true);
+      setWins(wins + 1);
+    } else {
+      //set something to show wrong
+      setLosses(losses + 1);
+      setBgImage("images/cross.png");
+    }
+    clearInput();
+    //i need this if statement because the shorter array needs to reset the index after 12
+    if (currentNumberIndexGiven < 11) {
+      setCurrentNumberIndexGiven(currentNumberIndexGiven + 1);
+    } else {
+      setCurrentNumberIndexGiven(0);
+    }
+    //this continues until all 48 are completed
+    setCurrentNumberIndexUnknown(currentNumberIndexUnknown + 1);
+  };
+
+  //input fuction, counting wins, losses and showing the cross
+  //this is for the missing number for equation
+  const inputResponseMissing = () => {
+    if (parseInt(enteredValues) === secondNumber) {
       //set a back something to show correct
       setShowWin(true);
       setWins(wins + 1);
@@ -100,7 +124,7 @@ function Equation({ array1, array2, level }) {
             <div className="equation" style={responseImg}>
               <div className="equation__row">
                 <div>
-                  {number_given} &times; {unknown_num}
+                  {firstNumber} &times; {secondNumber}
                 </div>
                 =
                 <input
@@ -143,11 +167,22 @@ function Equation({ array1, array2, level }) {
                   🔙
                 </button>
               </div>
+              <button
+                className="btn"
+                text="Submit"
+                onClick={() => inputResponseSum()}
+              >
+                Submit
+              </button>
+              <Timer
+                isComplete={isComplete}
+                onCompleteChange={handleCompleteChange}
+              />
             </div>
           ) : (
             <div className="equation" style={responseImg}>
               <div className="equation__row">
-                <div>{number_given} &times; </div>
+                <div>{firstNumber} &times; </div>
                 <input
                   className="equation__input"
                   value={enteredValues}
@@ -155,7 +190,7 @@ function Equation({ array1, array2, level }) {
                   readOnly
                   onkeypress="this.style.width = ((this.value.length + 1) * 8) + 'px';"
                 />
-                <div> = {given_sum}</div>
+                <div> = {sumOfNumbers}</div>
               </div>
               <div className="equation__keyboard">
                 {[...Array(9).keys()].map((index) => (
@@ -190,15 +225,19 @@ function Equation({ array1, array2, level }) {
                   🔙
                 </button>
               </div>
+              <button
+                className="btn"
+                text="Submit"
+                onClick={() => inputResponseMissing()}
+              >
+                Submit
+              </button>
+              <Timer
+                isComplete={isComplete}
+                onCompleteChange={handleCompleteChange}
+              />
             </div>
           )}
-          <button className="btn" text="Submit" onClick={() => inputResponse()}>
-            Submit
-          </button>
-          <Timer
-            isComplete={isComplete}
-            onCompleteChange={handleCompleteChange}
-          />
         </>
       ) : (
         <Final losses={losses} wins={wins} totalNums={50} />
