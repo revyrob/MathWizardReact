@@ -36,7 +36,7 @@ function EquationPage() {
   //this will be ran everytime it starts
   useEffect(() => {
     backendArrays();
-  }, []);
+  }, [backendArrays]);
 
   useEffect(() => {
     console.log(arraysTogether);
