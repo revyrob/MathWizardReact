@@ -3,6 +3,8 @@
 The idea of Math Wiz was created to help my children with learning the mulitplication table.  At the same time working on their division because how the questions are presented. I took inspiration from Wordle and Harry Potter! 
 For executing my idea I used a simple Trello board to help create small tasks and note any issues.  
 
+Deployed site : https://math-wizardly.netlify.app/
+
 ## Available Scripts
 
 In the project directory, you can run:
