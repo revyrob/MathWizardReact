@@ -1,6 +1,8 @@
+//custom
 import "./Header.scss";
-//import logo from "../../assets/logo/logo_hat.png";
 import backArrow from "../../assets/back-arrow-icon.svg";
+
+//libraries
 import { Link } from "react-router-dom";
 
 function Header() {

@@ -1,7 +1,10 @@
+//custom comps and styling
 import React, { useState, useEffect } from "react";
-import Header from "../components/Header/Header";
-import { useNavigate } from "react-router-dom";
 import Btn from "../components/Btn/Btn";
+
+//libraries
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header/Header";
 
 function Range() {
   const [level, setLevel] = useState("");
