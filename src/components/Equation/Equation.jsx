@@ -1,3 +1,6 @@
+/*Component for both equations with blank in between or blank for the sum
+ * it determines which component to use determined by the level given
+ */
 //custom comps
 import "./Equation.scss";
 import Timer from "../Timer/Timer";

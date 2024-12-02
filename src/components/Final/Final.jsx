@@ -1,3 +1,5 @@
+/* Final page given with scores. It would be good to add stats to this
+ */
 //custom styles comps
 import "./Final.scss";
 import question from "../../assets/question-circle.svg";

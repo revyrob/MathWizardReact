@@ -1,7 +1,10 @@
+//custom comps and styling
 import "../App.scss";
 import Btn from "../components/Btn/Btn";
-import { Link } from "react-router-dom";
 import Hero from "../components/Hero/Hero";
+
+//libraries
+import { Link } from "react-router-dom";
 
 function Homepage() {
   var today = new Date();
