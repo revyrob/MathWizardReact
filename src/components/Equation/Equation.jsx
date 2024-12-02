@@ -1,5 +1,5 @@
-/*Component for both equations with blank in between or blank for the sum
- * it determines which component to use determined by the level given
+/* This component shows how the equations are reprensented on the Equation page
+ * The equations have different set-ups with inputs depending on the level selected by the user
  */
 //custom comps
 import "./Equation.scss";
@@ -11,7 +11,6 @@ import React, { useEffect, useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 
 function Equation({ array1, array2, level }) {
-  //states used within the camp
   const [isComplete, setIsComplete] = useState(false); //for determining if session is done
   const [wins, setWins] = useState(0); //counting wins
   const [losses, setLosses] = useState(0); //counting losses
@@ -23,9 +22,9 @@ function Equation({ array1, array2, level }) {
   const [currentNumberIndexUnknown, setCurrentNumberIndexUnknown] = useState(0); //counting in the array for the larger array
 
   //variables for each equation
-  const firstNumber = array1[currentNumberIndexGiven];
-  const secondNumber = array2[currentNumberIndexUnknown];
-  const sumOfNumbers = firstNumber * secondNumber;
+  const firstNumber = array1[currentNumberIndexGiven]; //first number in the equation, the number is from the array in the backend
+  const secondNumber = array2[currentNumberIndexUnknown]; //second number in the equation, the number is from the array in the backend
+  const sumOfNumbers = firstNumber * secondNumber; //sum in regards to multiplication
 
   //value input from the user and then amending the enteredValues
   const valueInput = (value) => {
