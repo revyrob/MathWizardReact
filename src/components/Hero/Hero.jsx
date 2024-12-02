@@ -8,7 +8,7 @@ function Hero() {
       <h1 className="hero__title">Math Wizards</h1>
       <h2 className="hero__mission">Unlock the Magic of Numbers! 🪄✨</h2>
       <p>
-        You will have <span className="number">40</span> seconds to answer as
+        You will have <span className="number">45</span> seconds to answer as
         many equations as you can.
       </p>
     </section>
