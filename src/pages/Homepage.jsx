@@ -24,10 +24,10 @@ function Homepage() {
   const findCounter = () => {
     setLoading(true);
     axios
-      .get(`${REACT_APP_API_SERVER_URL}`)
+      .get(`${REACT_APP_API_SERVER_URL}/counter`)
       .then((response) => {
         //these are both objects
-        setCounter(response.data[2]);
+        setCounter(response.data.counter);
         setLoading(false);
       })
 
