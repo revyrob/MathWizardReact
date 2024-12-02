@@ -1,25 +1,33 @@
+/*
+ *
+ *Currently not used
+ */
 import React, { useState, useEffect } from "react";
 
-const Timer = ({ delayResend = "40", isComplete, onCompleteChange }) => {
-  const [delay, setDelay] = useState(+delayResend);
-  //set a state for when the time is out
-  const minutes = Math.floor(delay / 60);
-  const seconds = Math.floor(delay % 60);
+const Timer = ({ delayResend = "5", isComplete, setIsComplete }) => {
+  // Initialize delay state with a number value
+  const [delay, setDelay] = useState(Number(delayResend));
+  // Function to handle completion state changes
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setDelay((prevDelay) => prevDelay - 1);
-    }, 1000);
-
-    if (delay === 0) {
-      onCompleteChange(true);
-      clearInterval(timer);
+    // If delay reaches 0, notify the parent and stop the timer
+    if (delay <= 0) {
+      setIsComplete(true); // Notify that timer is complete
+      return; // Exit early if the timer is finished
     }
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, [delay, onCompleteChange]);
+    // Start the interval only if delay is greater than 0
+    const timer = setInterval(() => {
+      setDelay((prevDelay) => prevDelay - 1); // Decrement delay by 1 every second
+    }, 1000);
+
+    // Cleanup the interval on unmount or when the timer finishes
+    return () => clearInterval(timer);
+  }, [delay, setIsComplete]); // Re-run useEffect when delay changes
+
+  // Convert delay into minutes and seconds
+  const minutes = Math.floor(delay / 60); // Convert to minutes
+  const seconds = delay % 60; // Get remaining seconds
 
   return (
     <span>

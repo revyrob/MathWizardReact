@@ -5,14 +5,41 @@ import Hero from "../components/Hero/Hero";
 
 //libraries
 import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function Homepage() {
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, "0");
-  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  var yyyy = today.getFullYear();
+  const [loading, setLoading] = useState(false);
+  const [counter] = useState();
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
 
   today = mm + "/" + dd + "/" + yyyy;
+  const REACT_APP_API_SERVER_URL = process.env.REACT_APP_API_SERVER_URL;
+
+  //bring in the 5 arrays from the backend
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const findCounter = () => {
+    setLoading(true);
+    axios
+      .get(`${REACT_APP_API_SERVER_URL}`)
+      .then((response) => {
+        //these are both objects
+        console.log(response.data);
+        setLoading(false);
+      })
+
+      .catch((err) => console.log(err));
+    setLoading(false);
+  };
+
+  //this will be ran everytime it starts
+  useEffect(() => {
+    findCounter();
+  }, [findCounter]);
+  console.log(counter);
   return (
     <section className="wizard-style">
       <Hero />
@@ -20,12 +47,14 @@ function Homepage() {
         <Link className="wizard-style__date" to="/range">
           <Btn className="goToGame__btn" text="Play Game" />
         </Link>
-        {/* <Link to="">
-          <Btn className="goToGame__btn" text="How to Play" />
-        </Link> */}
-        <p className="wizard-style__date">May 7th, 2024</p>
-        <p className="wizard-style__date">No. 3</p>
-        <p className="wizard-style__date">Edited by Kayle Robson</p>
+
+        <p className="wizard-style__date">{today}</p>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <p className="wizard-style__date">No. {counter}</p>
+        )}
+        <p className="wizard-style__date">Created by Kayle Robson</p>
       </div>
     </section>
   );

@@ -3,7 +3,6 @@
  */
 //custom comps
 import "./Equation.scss";
-import Timer from "../Timer/Timer";
 import Final from "../Final/Final";
 
 //libraries
@@ -26,6 +25,29 @@ function Equation({ array1, array2, level }) {
   const secondNumber = array2[currentNumberIndexUnknown]; //second number in the equation, the number is from the array in the backend
   const sumOfNumbers = firstNumber * secondNumber; //sum in regards to multiplication
 
+  const [delay, setDelay] = useState(5);
+  // Function to handle completion state changes
+
+  useEffect(() => {
+    // If delay reaches 0, notify the parent and stop the timer
+    if (delay <= 0) {
+      setIsComplete(true); // Notify that timer is complete
+      return; // Exit early if the timer is finished
+    }
+
+    // Start the interval only if delay is greater than 0
+    const timer = setInterval(() => {
+      setDelay((prevDelay) => prevDelay - 1); // Decrement delay by 1 every second
+    }, 1000);
+
+    // Cleanup the interval on unmount or when the timer finishes
+    return () => clearInterval(timer);
+  }, [delay, setIsComplete]); // Re-run useEffect when delay changes
+
+  // Convert delay into minutes and seconds
+  const minutes = Math.floor(delay / 60); // Convert to minutes
+  const seconds = delay % 60; // Get remaining seconds
+
   //value input from the user and then amending the enteredValues
   const valueInput = (value) => {
     setEnteredValues(enteredValues + value); // Append the entered value
@@ -37,11 +59,6 @@ function Equation({ array1, array2, level }) {
     setTimeout(() => {
       setBgImage(""); // Clear the background image after a short delay or it won't show at all
     }, 450);
-  };
-
-  // Function to handle completion state changes
-  const handleCompleteChange = (newCompleteState) => {
-    setIsComplete(newCompleteState);
   };
 
   //input fuction, counting wins, losses and showing the cross
@@ -176,10 +193,10 @@ function Equation({ array1, array2, level }) {
               >
                 Submit
               </button>
-              <Timer
-                isComplete={isComplete}
-                onCompleteChange={handleCompleteChange}
-              />
+              <span>
+                {minutes < 10 ? "0" + minutes : minutes}:
+                {seconds < 10 ? "0" + seconds : seconds}
+              </span>
             </div>
           ) : (
             <div className="equation" style={responseImg}>
@@ -234,10 +251,10 @@ function Equation({ array1, array2, level }) {
               >
                 Submit
               </button>
-              <Timer
-                isComplete={isComplete}
-                onCompleteChange={handleCompleteChange}
-              />
+              <span>
+                {minutes < 10 ? "0" + minutes : minutes}:
+                {seconds < 10 ? "0" + seconds : seconds}
+              </span>
             </div>
           )}
         </>
