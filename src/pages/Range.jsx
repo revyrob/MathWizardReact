@@ -47,12 +47,19 @@ function Range() {
             onClick={chooseLevel}
             text="Level 2"
           />
-          {/* <Btn
-            className={"goToGame__btn--2"}
+          <Btn
+            className={"goToGame__btn"}
             value={"level3"}
             onClick={chooseLevel}
-            text="Vivian 3"
-          /> */}
+            text={"Level 3"}
+          />
+
+          <Btn
+            className={"goToGame__btn"}
+            value={"level4"}
+            onClick={chooseLevel}
+            text="Level 4"
+          />
         </div>
       </div>
     </>

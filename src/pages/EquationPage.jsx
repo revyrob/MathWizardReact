@@ -16,17 +16,26 @@ function EquationPage() {
 
   const REACT_APP_API_SERVER_URL = process.env.REACT_APP_API_SERVER_URL;
   const level = searchParams.get("level");
-
   //bring in the 5 arrays from the backend
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const backendArrays = () => {
     setLoading(true);
     axios
-      .get(`${REACT_APP_API_SERVER_URL}`)
+      .get(
+        `${REACT_APP_API_SERVER_URL}`,
+        //bring in the params for the level to determine which one to use
+        //only get contracts that are inactive (true)
+        //and that have the province needed
+        {
+          params: {
+            level: level,
+          },
+        }
+      )
       .then((response) => {
         //these are both objects
-        setArraysTogether(response.data[0]);
-        setArrayAgainst(response.data[1]);
+        setArraysTogether(response.data.arrayLarge);
+        setArrayAgainst(response.data.arraySmall);
         setLoading(false);
       })
 
