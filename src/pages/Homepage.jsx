@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 
 function Homepage() {
   const [loading, setLoading] = useState(false);
-  const [counter] = useState();
+  const [counter, setCounter] = useState();
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, "0");
   let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
@@ -27,7 +27,7 @@ function Homepage() {
       .get(`${REACT_APP_API_SERVER_URL}`)
       .then((response) => {
         //these are both objects
-        console.log(response.data);
+        setCounter(response.data[2]);
         setLoading(false);
       })
 
@@ -39,7 +39,7 @@ function Homepage() {
   useEffect(() => {
     findCounter();
   }, [findCounter]);
-  console.log(counter);
+
   return (
     <section className="wizard-style">
       <Hero />
