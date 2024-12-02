@@ -1,20 +1,26 @@
-import React from "react";
+/* Final page given with scores. It would be good to add stats to this
+ */
+//custom styles comps
 import "./Final.scss";
+import question from "../../assets/question-circle.svg";
+
+//libraries
+import React from "react";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
-import question from "../../assets/question-circle.svg";
-
-export default function Final({ wins, losses, totalNums }) {
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, "0");
-  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  var yyyy = today.getFullYear();
+export default function Final({ wins, losses }) {
+  //find today's date
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
 
   today = mm + "/" + dd + "/" + yyyy;
   const answered = wins + losses;
   const correctPerc = wins / answered;
-  const responsePerc = answered / totalNums;
+
+  //function for popovers explaining what correct percentage is
   const correctPopover = (
     <Popover id="popover-basic">
       <Popover.Header as="h3">What is correct percentage?</Popover.Header>
@@ -24,14 +30,6 @@ export default function Final({ wins, losses, totalNums }) {
     </Popover>
   );
 
-  const responsePopover = (
-    <Popover id="popover-basic">
-      <Popover.Header as="h3">What is response percentage?</Popover.Header>
-      <Popover.Body>
-        Percentage of all responses/all questions (50 questions)
-      </Popover.Body>
-    </Popover>
-  );
   return (
     <section className="final">
       <h1 className="final__header">Final Score</h1>
@@ -54,21 +52,6 @@ export default function Final({ wins, losses, totalNums }) {
           </div>
           {/* beside the p tag have a question mark to explain what it is */}
           <span>{(correctPerc * 100).toFixed(0)}%</span>{" "}
-        </div>
-        <div className="final__score--long">
-          <div>
-            <p>Response Percentage</p>{" "}
-            <OverlayTrigger
-              trigger="click"
-              placement="bottom"
-              overlay={responsePopover}
-              className="final__overlay"
-            >
-              <img src={question} alt="test" />
-            </OverlayTrigger>
-          </div>
-          {/* beside the p tag have a question mark to explain what it is */}
-          <span>{(responsePerc * 100).toFixed(0)}%</span>
         </div>
       </div>
       {/* <div className="final__share">Share</div> */}

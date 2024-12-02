@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+//custom comps and styling
 import Header from "../components/Header/Header";
 import Equation from "../components/Equation/Equation";
+
+//libaries
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 
+//equation page determines which equation to use from level chosen
 function EquationPage() {
   const [searchParams] = useSearchParams();
   const [arraysTogether, setArraysTogether] = useState([]);
