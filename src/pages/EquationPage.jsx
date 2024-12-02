@@ -16,6 +16,7 @@ function EquationPage() {
 
   const REACT_APP_API_SERVER_URL = process.env.REACT_APP_API_SERVER_URL;
   const level = searchParams.get("level");
+
   //bring in the 5 arrays from the backend
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const backendArrays = () => {
@@ -35,12 +36,10 @@ function EquationPage() {
 
   //this will be ran everytime it starts
   useEffect(() => {
-    backendArrays();
-  }, [backendArrays]);
-
-  useEffect(() => {
-    console.log(arraysTogether);
-  }, [arraysTogether]);
+    if (level !== undefined) {
+      backendArrays();
+    }
+  }, [backendArrays, level]);
 
   return (
     <div className="wizard-style__wrapper">
