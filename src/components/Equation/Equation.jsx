@@ -19,7 +19,7 @@ function Equation({ array1, array2, level }) {
   const [bgImage, setBgImage] = useState(""); //for X when it comes across page if the answer is wrong
   const [currentNumberIndexGiven, setCurrentNumberIndexGiven] = useState(0); //counting in the array for small array given
   const [currentNumberIndexUnknown, setCurrentNumberIndexUnknown] = useState(0); //counting in the array for the larger array
-  const [delay, setDelay] = useState(5); //seconds for how long the games will run
+  const [delay, setDelay] = useState(45); //seconds for how long the games will run
 
   //variables for each equation
   const firstNumber = array1[currentNumberIndexGiven]; //first number in the equation, the number is from the array in the backend
