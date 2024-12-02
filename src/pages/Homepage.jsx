@@ -27,7 +27,7 @@ function Homepage() {
       .get(`${REACT_APP_API_SERVER_URL}/counter`)
       .then((response) => {
         //these are both objects
-        setCounter(response.data.counter);
+        setCounter(response.data);
         setLoading(false);
       })
 
