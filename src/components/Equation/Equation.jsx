@@ -6,7 +6,7 @@ import "./Equation.scss";
 import Final from "../Final/Final";
 
 //libraries
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 
 function Equation({ array1, array2, level }) {
@@ -20,6 +20,7 @@ function Equation({ array1, array2, level }) {
   const [currentNumberIndexGiven, setCurrentNumberIndexGiven] = useState(0); //counting in the array for large array given
   const [currentNumberIndexUnknown, setCurrentNumberIndexUnknown] = useState(0); //counting in the array for the small array
   const [delay, setDelay] = useState(45); //seconds for how long the games will run
+  const debounceTimer = useRef(null);
 
   //variables for each equation
   const firstNumber = array1[currentNumberIndexGiven]; //first number in the equation, the number is from the array in the backend
@@ -49,7 +50,7 @@ function Equation({ array1, array2, level }) {
 
   //value input from the user and then amending the enteredValues
   const valueInput = (value) => {
-    setEnteredValues(enteredValues + value); // Append the entered value
+    setEnteredValues((prev) => prev + value); // Append the entered value
   };
 
   //clear input after response
@@ -66,10 +67,14 @@ function Equation({ array1, array2, level }) {
     if (parseInt(enteredValues) === sumOfNumbers) {
       //set a back something to show correct
       setShowWin(true);
-      setWins(wins + 1);
+      //I had a problem iwht state updates and sometimes I found that I would enter in the correct answer but it would show an answer as wrong
+      //this is using callback form adn I am hoping it will help it.
+      setWins((prevWins) => prevWins + 1);
     } else {
       //set something to show wrong
-      setLosses(losses + 1);
+      //I had a problem iwht state updates and sometimes I found that I would enter in the correct answer but it would show an answer as wrong
+      //this is using callback form adn I am hoping it will help it.
+      setLosses((prevLosses) => prevLosses + 1);
       setBgImage("images/cross.png");
     }
     clearInput();
@@ -113,14 +118,32 @@ function Equation({ array1, array2, level }) {
     }
   };
 
-  //back space to remove input
+  // Function for removing one character from the entered input
   const removeInput = () => {
-    //remove the last item in the string
-    let str = enteredValues;
-    str = str.slice(0, -1);
-    setEnteredValues(str);
+    setEnteredValues((prev) => prev.slice(0, -1));
   };
 
+  // Debounced version of the evaluation logic
+  const debouncedEvaluate = () => {
+    // Clear any previous timer
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+
+    // Set a new timer to evaluate the answer after 500ms (or any duration you prefer)
+    debounceTimer.current = setTimeout(() => {
+      if (level === "level4") {
+        inputResponseMissing(); //call if the level is 4
+      } else {
+        inputResponseSum(); // Call the response handling function
+      }
+    }, 100);
+  };
+
+  // Call this function when the user submits an answer
+  const handleSubmit = () => {
+    debouncedEvaluate(); // Trigger the debounced evaluation
+  };
   //the useEffect for showing wins after the timeout
   useEffect(() => {
     if (showWin) {
@@ -192,11 +215,7 @@ function Equation({ array1, array2, level }) {
                   🔙
                 </button>
               </div>
-              <button
-                className="btn"
-                text="Submit"
-                onClick={() => inputResponseSum()}
-              >
+              <button className="btn" text="Submit" onClick={handleSubmit}>
                 Submit
               </button>
               <span>
@@ -249,11 +268,7 @@ function Equation({ array1, array2, level }) {
                   🔙
                 </button>
               </div>
-              <button
-                className="btn"
-                text="Submit"
-                onClick={() => inputResponseMissing()}
-              >
+              <button className="btn" text="Submit" onClick={handleSubmit}>
                 Submit
               </button>
               <span>
