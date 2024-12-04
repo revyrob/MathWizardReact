@@ -21,24 +21,24 @@ function Homepage() {
 
   //bring in the 5 arrays from the backend
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const findCounter = () => {
-    setLoading(true);
-    axios
-      .get(`${REACT_APP_API_SERVER_URL}/counter`)
-      .then((response) => {
-        //these are both objects
-        setCounter(response.data.counter);
-        setLoading(false);
-      })
-
-      .catch((err) => console.log(err));
-    setLoading(false);
-  };
 
   //this will be ran everytime it starts
   useEffect(() => {
+    const findCounter = () => {
+      setLoading(true);
+      axios
+        .get(`${REACT_APP_API_SERVER_URL}counter`)
+        .then((response) => {
+          //these are both objects
+          setCounter(response.data.counter);
+          setLoading(false);
+        })
+
+        .catch((err) => console.log(err));
+      setLoading(false);
+    };
     findCounter();
-  }, [findCounter]);
+  }, [REACT_APP_API_SERVER_URL]);
 
   return (
     <section className="wizard-style">
