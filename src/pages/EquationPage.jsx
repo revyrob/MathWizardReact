@@ -6,6 +6,7 @@ import Equation from "../components/Equation/Equation";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 //equation page determines which equation to use from level chosen
 function EquationPage() {
@@ -13,6 +14,8 @@ function EquationPage() {
   const [arraysTogether, setArraysTogether] = useState([]);
   const [arrayAgainst, setArrayAgainst] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const REACT_APP_API_SERVER_URL = process.env.REACT_APP_API_SERVER_URL;
   const level = searchParams.get("level");
@@ -47,8 +50,11 @@ function EquationPage() {
   useEffect(() => {
     if (level !== undefined) {
       backendArrays();
+    } else {
+      //if the level is undefined it goes back to the range page
+      navigate(`/range`);
     }
-  }, [backendArrays, level]);
+  }, [backendArrays, level, navigate]);
 
   return (
     <div className="wizard-style__wrapper">
